@@ -17,5 +17,4 @@ class LoginViewController: UIViewController {
         loginTextField.backgroundColor = nil
         // Do any additional setup after loading the view.
     }
-
 }

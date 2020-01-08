@@ -22,7 +22,7 @@ class ShowDetailViewController: UIViewController {
     // MARK: Private properties
 
     private lazy var speechSentesizer = AVSpeechSynthesizer()
-    private var speech: AVSpeechUtterance = AVSpeechUtterance()
+    private var speech = AVSpeechUtterance()
     // MARK: Outlets
 
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -49,7 +49,6 @@ class ShowDetailViewController: UIViewController {
         playButton.addTarget(self, action: #selector(playButtonWasTapped), for: .touchUpInside)
         playButton.layer.cornerRadius = 20
         playButton.layer.masksToBounds = true
-
     }
 
     // MARK: Go back function
@@ -107,7 +106,7 @@ class ShowDetailViewController: UIViewController {
         videoView.isHidden = true
         videoView.backgroundColor = UIColor.clear
         if let url = word.videoURL {
-            if url == "" {return}
+            if url == "" { return }
             videoView.load(withVideoId: url)
         }
     }
@@ -129,4 +128,3 @@ extension ShowDetailViewController: AVSpeechSynthesizerDelegate {
         playButton.isEnabled = true
     }
 }
-

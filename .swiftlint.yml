@@ -10,8 +10,6 @@ disabled_rules:
 
 excluded:
   - Pods
-  - fastlane
+  - Carthage
   - vendor
-
-file_length: 400
-type_body_length: 300
+  - "**/Models/CoreData/*CoreDataProperties.swift"

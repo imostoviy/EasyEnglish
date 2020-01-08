@@ -42,7 +42,7 @@ class PullToRefresh {
     }()
 
     @objc private func refresh() {
-        provider.request(.updatebase) { (result) in
+        provider.request(.updatebase) { result in
             switch result {
             case let .success(moyaResponse):
                 let data = moyaResponse.data
@@ -92,7 +92,6 @@ class PullToRefresh {
             } catch {
                 debugPrint(error)
             }
-
         } else {
             let object = Word(context: context)
             object.word = word.word

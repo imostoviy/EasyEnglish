@@ -65,4 +65,3 @@ extension UITableView {
         register(nib, forHeaderFooterViewReuseIdentifier: viewClass.reuseIdentifier)
     }
 }
-

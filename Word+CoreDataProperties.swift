@@ -18,5 +18,4 @@ extension Word {
 
     @NSManaged public var isApproved: Bool
     @NSManaged public var isKnown: Bool
-
 }

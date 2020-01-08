@@ -1,27 +1,29 @@
 PODS:
-  - Alamofire (4.8.2)
-  - Floaty (4.1.0)
-  - IQKeyboardManager (6.2.0)
-  - Kingfisher (5.7.0)
-  - Moya (12.0.1):
-    - Moya/Core (= 12.0.1)
-  - Moya/Core (12.0.1):
+  - Alamofire (4.9.1)
+  - Floaty (4.2.0)
+  - IQKeyboardManager (6.5.4)
+  - Kingfisher (5.12.0):
+    - Kingfisher/Core (= 5.12.0)
+  - Kingfisher/Core (5.12.0)
+  - Moya (13.0.1):
+    - Moya/Core (= 13.0.1)
+  - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
-    - Result (~> 4.0)
+    - Result (~> 4.1)
   - Result (4.1.0)
-  - TextFieldEffects (1.5.1)
+  - TextFieldEffects (1.6.0)
   - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
-  - Floaty (~> 4.1.0)
+  - Floaty
   - IQKeyboardManager
-  - Kingfisher (~> 5.7.0)
+  - Kingfisher
   - Moya
   - TextFieldEffects
-  - youtube-ios-player-helper (~> 0.1.4)
+  - youtube-ios-player-helper
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - Floaty
     - IQKeyboardManager
@@ -32,15 +34,15 @@ SPEC REPOS:
     - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  Floaty: 1a4e213f3512cf3045ef9cb0c1ff456226d1f66a
-  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
-  Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
-  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
+  IQKeyboardManager: 72b359cd7e777e3a984cedbe05f8da45320cbb63
+  Kingfisher: dc6e0f53bb5b12c3e75bedb0e01bbd7a640eea69
+  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
+  TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
-PODFILE CHECKSUM: 60c96659944899bce4c0e7bb2c88da885c49825e
+PODFILE CHECKSUM: d9702d98b5a12a6836aa9b8010623f28df99e847
 
 COCOAPODS: 1.8.4

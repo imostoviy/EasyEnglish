@@ -45,13 +45,11 @@ class TestWordCell: UITableViewCell {
         pictureView.kf.setImage(with: word.pictureURL,
                                 placeholder: UIImage(named: "flag"),
                                 options: nil,
-                                progressBlock: nil) { (result) in
+                                progressBlock: nil) { result in
                                     switch result {
                                     case .success: return
                                     default: self.pictureView.image = UIImage(named: "flag")
                                     }
         }
-
     }
-
 }

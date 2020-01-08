@@ -67,7 +67,6 @@ class ComposeWordViewController: UIViewController {
         fillLettersAndDescription()
         configuratinCollectionView()
         configuratingNavBar()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -114,11 +113,11 @@ class ComposeWordViewController: UIViewController {
         let alert = UIAlertController(title: "Congratulation", message: messageInAlert, preferredStyle: .alert)
 
         if words.count == 0 {
-            alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { (_) in
+            alert.addAction(UIAlertAction(title: "Go back", style: .default, handler: { _ in
                 self.dismiss(animated: true, completion: nil)
             }))
         } else {
-            alert.addAction(UIAlertAction(title: "Next word", style: .default, handler: { (_) in
+            alert.addAction(UIAlertAction(title: "Next word", style: .default, handler: { _ in
                 self.observedIndex -= 1
                 self.arrowButtonWasTapped(button: self.forwardButton)
             }))
@@ -173,7 +172,7 @@ class ComposeWordViewController: UIViewController {
     @objc private func arrowButtonWasTapped(button: UIButton) {
         let isForward = button == forwardButton ? true : false
 
-        if isForward {self.observedIndex += 1} else {self.observedIndex -= 1}
+        if isForward { self.observedIndex += 1 } else { self.observedIndex -= 1 }
         checkIndex()
 
         UIView.animate(withDuration: 1.5, delay: 0.5, options: .allowUserInteraction,
@@ -284,8 +283,8 @@ class ComposeWordViewController: UIViewController {
                 sourceIndexPath = nil
             }
 
-            guard let item = coordinator.items.first else {return}
-            guard let source = sourceIndexPath else {return}
+            guard let item = coordinator.items.first else { return }
+            guard let source = sourceIndexPath else { return }
             let indexPath = IndexPath(row: destinationIndexPath.row, section: destinationIndexPath.section)
             if collectionView === lettersCollectionView {
                 lettersData.insert(item.dragItem.localObject as! String, at: indexPath.row)
@@ -380,7 +379,6 @@ extension ComposeWordViewController: UICollectionViewDragDelegate {
         dragItem.localObject = item
         return [dragItem]
     }
-
 }
 
 // MARK: - - Extension UICollectionViewDropDelegate

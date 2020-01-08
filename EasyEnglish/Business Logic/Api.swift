@@ -51,6 +51,4 @@ extension Services: TargetType {
     var headers: [String: String]? {
         return ["Content-type": "application/json"]
     }
-
 }
-

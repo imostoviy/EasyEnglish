@@ -23,5 +23,4 @@ extension AbstractWord {
     @NSManaged public var videoURL: String?
     @NSManaged public var wordDescription: String?
     @NSManaged public var word: String?
-
 }

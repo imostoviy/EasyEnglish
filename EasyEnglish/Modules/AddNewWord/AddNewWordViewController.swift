@@ -118,7 +118,6 @@ class AddNewWordViewController: UIViewController {
         addedWordsVC.root = rootController
         dismiss(animated: true, completion: nil)
         vc.present(addedWordsVC, animated: true, completion: nil)
-
     }
 
     @objc private func goBack() {
@@ -164,7 +163,7 @@ class AddNewWordViewController: UIViewController {
 
         let url = URL(string: textField.text!)!
         let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { (_, _, error) in
+        let task = session.dataTask(with: url) { _, _, error in
             if error == nil {
                 return
             }
@@ -173,7 +172,6 @@ class AddNewWordViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         }
         task.resume()
-
     }
 
     ///Checking if word have set normally
@@ -233,7 +231,6 @@ class AddNewWordViewController: UIViewController {
             navigationItem.rightBarButtonItem = nil
         }
     }
-
 }
 
 // MARK: - - Extension textViewDelegate
@@ -257,7 +254,6 @@ extension AddNewWordViewController: UITextViewDelegate {
         isDoneButtonMustBeShown[0] = checkIfDescriptionIsNormal(textView: textView)
         checkNeccesaryForDoneButton()
     }
-
 }
 
 // MARK: - - Extension textFieldDelegate
@@ -271,7 +267,7 @@ extension AddNewWordViewController: UITextFieldDelegate {
             textField.layer.borderColor = UIColor.red.cgColor
 
             let alert = UIAlertController(title: "Error", message: "You have this word already", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {(_) in
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: {_ in
                 textField.becomeFirstResponder()
             }))
 
@@ -283,6 +279,4 @@ extension AddNewWordViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.white.cgColor
     }
-
 }
-

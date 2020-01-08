@@ -52,7 +52,7 @@ class TestWordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(nib, forCellReuseIdentifier: SelfAddedWordsTableViewCell.identfier)
+        tableView.registerCell(WordCell.self)
         tableView.dataSource = self
         tableView.delegate = self
         customizationNavBar()
@@ -91,7 +91,6 @@ class TestWordViewController: UIViewController {
         }
         navigationItem.rightBarButtonItem = nil
     }
-
 }
 
 // MARK: - - Extension tableViewDataSource and tableViewDelegate
@@ -106,7 +105,7 @@ extension TestWordViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SelfAddedWordsTableViewCell.identfier) as! SelfAddedWordsTableViewCell
+        let cell: WordCell = tableView.dequeueReusableCell(for: indexPath)
         let placeholderImage = UIImage(named: "flag")
 
         cell.wordLabel.isHidden = true
@@ -118,7 +117,7 @@ extension TestWordViewController: UITableViewDataSource, UITableViewDelegate {
         }
 
         cell.captureImageView.kf.indicatorType = .activity
-        cell.captureImageView.kf.setImage(with: url, placeholder: placeholderImage, options: nil, progressBlock: nil) { (result) in
+        cell.captureImageView.kf.setImage(with: url, placeholder: placeholderImage, options: nil, progressBlock: nil) { result in
             switch result {
             case .failure:
                 cell.captureImageView.image = placeholderImage
@@ -159,7 +158,6 @@ extension TestWordViewController: UITableViewDataSource, UITableViewDelegate {
 
         checkCapacity()
     }
-
 }
 
 // MARK: - - Extension Fetched results controller delegate

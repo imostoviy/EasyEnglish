@@ -27,7 +27,7 @@ class DictionaryViewController: UIViewController {
 
     private lazy var editActions: [UITableViewRowAction] = {
         let arrayOfActions: [UITableViewRowAction] = [
-            UITableViewRowAction(style: .normal, title: "Delete", handler: { [weak self] (_, indexPath) in
+            UITableViewRowAction(style: .normal, title: "Delete", handler: { [weak self] _, indexPath in
             self?.deleteAction(indexPath: indexPath)
         })]
         arrayOfActions.first?.backgroundColor = UIColor.red
@@ -63,7 +63,7 @@ class DictionaryViewController: UIViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(cell, forCellReuseIdentifier: SelfAddedWordsTableViewCell.identfier)
+        tableView.registerCell(WordCell.self)
         tableView.addSubview(PullToRefresh.shared.refreshController)
 
         resultSearchController = setUpSearchController()
@@ -91,25 +91,23 @@ class DictionaryViewController: UIViewController {
     private func setUpFloatyButton() {
         floatyButton.sticky = true
         var icon = UIImage(named: "plus")
-        floatyButton.addItem("Add word", icon: icon) { (_) in
+        floatyButton.addItem("Add word", icon: icon) { _ in
             self.resultSearchController.dismiss(animated: false, completion: nil)
             let storyboard = UIStoryboard(name: "AddNewWord", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: AddNewWordViewController.reuseIdentifier) as! AddNewWordViewController
             vc.rootController = self
             self.present(vc, animated: true, completion: nil)
-
         }
 
         icon = UIImage(named: "layers")
-        floatyButton.addItem("Unchecked words", icon: icon) { (_) in
+        floatyButton.addItem("Unchecked words", icon: icon) { _ in
             self.resultSearchController.dismiss(animated: false, completion: nil)
             let storyboard = UIStoryboard(name: "SelfAddedWords", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "SelfAddedWords") as! SelfAddedWordsViewController
             self.present(vc, animated: true, completion: nil)
-
         }
 
-        floatyButton.addItem("Test", icon: nil) { (_) in
+        floatyButton.addItem("Test", icon: nil) { _ in
             self.resultSearchController.dismiss(animated: false, completion: nil)
             let storyboard = UIStoryboard(name: "TestWords", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: TestWordViewController.identifier) as! TestWordViewController
@@ -125,7 +123,7 @@ class DictionaryViewController: UIViewController {
         guard let object = fetchedResultsController.fetchedObjects?[indexPath.row] else { return }
 
         let alert = UIAlertController(title: "Are you shure?", message: "You are going to delete \(object.word ?? "")", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
             self.context.delete(object)
             do {
                 try self.context.save()
@@ -162,7 +160,6 @@ class DictionaryViewController: UIViewController {
 
         return text
     }
-
 }
 
 // MARK: - - FetchedresultsControllerDelegate
@@ -198,7 +195,7 @@ extension DictionaryViewController: UITableViewDelegate, UITableViewDataSource {
 //    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SelfAddedWordsTableViewCell.identfier) as! SelfAddedWordsTableViewCell
+        let cell: WordCell = tableView.dequeueReusableCell(for: indexPath)
         cell.selectionStyle = .none
 
         let data: [Word] = {
@@ -225,7 +222,7 @@ extension DictionaryViewController: UITableViewDelegate, UITableViewDataSource {
 
         let placeholderImage = UIImage(named: "flag")
         cell.captureImageView.kf.indicatorType = .activity
-        cell.captureImageView.kf.setImage(with: object.pictureURL, placeholder: placeholderImage, options: nil, progressBlock: nil) { (result) in
+        cell.captureImageView.kf.setImage(with: object.pictureURL, placeholder: placeholderImage, options: nil, progressBlock: nil) { result in
             switch result {
             case .failure:
                 cell.captureImageView.image = placeholderImage
@@ -257,7 +254,6 @@ extension DictionaryViewController: UITableViewDelegate, UITableViewDataSource {
         self.resultSearchController.dismiss(animated: true, completion: nil)
         present(vc, animated: true, completion: nil)
     }
-
 }
 
 // MARK: - - Extension UIsearchResultsUpdating
@@ -275,7 +271,7 @@ extension DictionaryViewController: UISearchResultsUpdating {
             options: .caseInsensitive)
 
         // filtring all data and pass only that walues which contaice regular expression
-        let array = fetchedResultsController.fetchedObjects?.filter({ (word) -> Bool in
+        let array = fetchedResultsController.fetchedObjects?.filter({ word -> Bool in
             guard let stringSearchIn = word.word else { return false }//text where searching compliting
             guard let regex = regex else { return false }
             let range = NSRange(location: 0, length: stringSearchIn.count)
@@ -295,4 +291,3 @@ extension DictionaryViewController: UISearchResultsUpdating {
         tableView.reloadData()
     }
 }
-

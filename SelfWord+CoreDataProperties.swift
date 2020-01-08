@@ -15,5 +15,4 @@ extension SelfWord {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<SelfWord> {
         return NSFetchRequest<SelfWord>(entityName: "SelfWord")
     }
-
 }

@@ -29,10 +29,10 @@ class SelfAddedWordsViewController: UIViewController {
     private let cell = UINib(nibName: "SelfAddedWordsTableViewCell", bundle: nil)
 
     private lazy var editActions = [
-        UITableViewRowAction(style: .normal, title: "Delete", handler: { [weak self] (_, indexPath) in
+        UITableViewRowAction(style: .normal, title: "Delete", handler: { [weak self] _, indexPath in
             self?.deleteAction(indexPath: indexPath)
         }),
-        UITableViewRowAction(style: .normal, title: "Edit", handler: { [weak self] (_, indexPath) in
+        UITableViewRowAction(style: .normal, title: "Edit", handler: { [weak self] _, indexPath in
             self?.editAction(indexPath: indexPath)
         })
     ]
@@ -65,7 +65,7 @@ class SelfAddedWordsViewController: UIViewController {
         setUpNavigationBar()
         setUpCheckButton()
 
-        tableView.register(cell, forCellReuseIdentifier: SelfAddedWordsTableViewCell.identfier)
+        tableView.registerCell(WordCell.self)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -107,7 +107,7 @@ class SelfAddedWordsViewController: UIViewController {
             }
         }
         for word in arrayToEncode {
-            provider.request(.validateWord(word: word)) { (result) in
+            provider.request(.validateWord(word: word)) { result in
                 if result.error != nil {
                     debugPrint(result)
                 }
@@ -124,7 +124,7 @@ class SelfAddedWordsViewController: UIViewController {
         }
 
         let alert = UIAlertController(title: "Are you shure?", message: "You didn't send words for checking, so we cant check and approve it. This words will not appeare in dictionary", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(_) in
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in
             self.dismiss(animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -136,7 +136,6 @@ class SelfAddedWordsViewController: UIViewController {
         let storyboard = UIStoryboard(name: "AddNewWord", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "AddNewWord") as! AddNewWordViewController
         self.present(vc, animated: true, completion: nil)
-
     }
 
     // MARK: delete option
@@ -157,9 +156,7 @@ class SelfAddedWordsViewController: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: "AddNewWord") as! AddNewWordViewController
         vc.passedObject = object
         self.present(vc, animated: true, completion: nil)
-
     }
-
 }
 
 // MARK: - - FetchedresultsControllerDelegate
@@ -183,7 +180,7 @@ extension SelfAddedWordsViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SelfAddedWordsTableViewCell.identfier) as! SelfAddedWordsTableViewCell
+        let cell: WordCell = tableView.dequeueReusableCell(for: indexPath)
         guard let object = fetchedResultsController.fetchedObjects?[indexPath.row] else {
             return cell
         }
@@ -194,7 +191,7 @@ extension SelfAddedWordsViewController: UITableViewDelegate, UITableViewDataSour
         let placeholderImage = UIImage(named: "flag")
         let url = object.pictureURL
         cell.captureImageView.kf.indicatorType = .activity
-        cell.captureImageView.kf.setImage(with: url, placeholder: placeholderImage, options: nil, progressBlock: nil) { (result) in
+        cell.captureImageView.kf.setImage(with: url, placeholder: placeholderImage, options: nil, progressBlock: nil) { result in
             switch result {
             case .failure:
                 cell.captureImageView.image = placeholderImage
@@ -207,6 +204,4 @@ extension SelfAddedWordsViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         return editActions
     }
-
 }
-
