@@ -80,7 +80,7 @@ class ShowDetailViewController: UIViewController {
         transcriptionLabel.text = word.transcription
         descriptionTextView.text = word.wordDescription
         translationUA.text = word.translationUA
-        translationRU.text = word.translationRu
+        translationRU.text = word.translationRU
 
         let image = UIImage(named: "flag")
         let imageURL = word.pictureURL

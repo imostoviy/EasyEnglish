@@ -2,8 +2,8 @@
 //  SelfWord+CoreDataClass.swift
 //  EasyEnglish
 //
-//  Created by Мостовий Ігор on 3/10/19.
-//  Copyright © 2019 Мостовий Ігор. All rights reserved.
+//  Created by Ihor Mostoviy on 08.01.2020.
+//  Copyright © 2020 Мостовий Ігор. All rights reserved.
 //
 //
 
@@ -11,8 +11,7 @@ import Foundation
 import CoreData
 
 @objc(SelfWord)
-public class SelfWord: NSManagedObject {
-
+public class SelfWord: AbstractWord {
     class func fetchAll() -> [SelfWord] {
         let context = CoreDataStack.shared.persistantContainer.viewContext
         let request: NSFetchRequest = fetchRequest()

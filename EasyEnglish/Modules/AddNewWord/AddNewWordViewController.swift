@@ -85,7 +85,7 @@ class AddNewWordViewController: UIViewController {
         object.transcription = wordInformation[1].text
         object.wordDescription = descriptionTextView.text
         object.translationUA = wordInformation[2].text
-        object.translationRu = wordInformation[3].text
+        object.translationRU = wordInformation[3].text
         object.pictureURL = URL(string: wordInformation[4].text ?? "")
         object.videoURL = wordInformation[5].text
         object.isKnown = false
@@ -134,7 +134,7 @@ class AddNewWordViewController: UIViewController {
         descriptionTextView.text = object.wordDescription
         wordInformation[2].text = object.translationUA
         wordInformation[2].placeholderLabel.transform.ty = 0
-        wordInformation[3].text = object.translationRu
+        wordInformation[3].text = object.translationRU
         wordInformation[3].placeholderLabel.transform.ty = 0
         wordInformation[4].text = object.pictureURL?.absoluteString
         wordInformation[4].placeholderLabel.transform.ty = 0

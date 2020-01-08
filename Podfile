@@ -10,8 +10,4 @@ target 'EasyEnglish' do
   pod "youtube-ios-player-helper", "~> 0.1.4"
   pod 'Moya'
 
-  target 'EasyEnglishUITests' do
-    inherit! :search_paths
-  end
-
 end

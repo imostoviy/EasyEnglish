@@ -21,7 +21,7 @@ struct WordStruct: Codable {
         self.transcription = word.transcription ?? ""
         self.description = word.wordDescription ?? ""
         self.translationUA = word.translationUA ?? ""
-        self.translationRU = word.translationRu ?? ""
+        self.translationRU = word.translationRU ?? ""
         self.imageURL = word.pictureURL?.absoluteString ?? ""
         self.videoURL = word.videoURL ?? ""
     }

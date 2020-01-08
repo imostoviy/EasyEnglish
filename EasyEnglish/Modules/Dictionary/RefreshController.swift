@@ -76,8 +76,8 @@ class PullToRefresh {
                 checkField(checkedField: word.description, originalField: originalWord.wordDescription)
             originalWord.translationUA =
                 checkField(checkedField: word.translationUA, originalField: originalWord.translationUA)
-            originalWord.translationRu =
-                checkField(checkedField: word.translationRU, originalField: originalWord.translationRu)
+            originalWord.translationRU =
+                checkField(checkedField: word.translationRU, originalField: originalWord.translationRU)
             originalWord.pictureURL =
                 URL(string: checkField(
                     checkedField: word.imageURL,
@@ -99,7 +99,7 @@ class PullToRefresh {
             object.transcription = word.transcription
             object.wordDescription = word.description
             object.translationUA = word.translationUA
-            object.translationRu = word.translationRU
+            object.translationRU = word.translationRU
             object.pictureURL = URL(string: word.imageURL ?? "")
             object.videoURL = word.videoURL
             object.isKnown = false
